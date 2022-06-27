@@ -1,0 +1,8 @@
+other/notes.txt
+.vscode
+.idea
+__pycache__
+htmlcov
+.coverage
+statement_coverage
+branch_coverage

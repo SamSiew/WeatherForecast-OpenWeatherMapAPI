@@ -1,0 +1,48 @@
+# This file is a template, and might need editing before it works on your project.
+# Official language image. Look for the different tagged releases at:
+# https://hub.docker.com/r/library/python/tags/
+image: python:latest
+
+before_script:
+  - python -V               # Print out python version for debugging
+  # - python3 -m venv venv
+  - pip install -r requirements.txt
+  - mkdir -p reports
+  
+stages:
+- statement_coverage
+- branch_coverage
+- run_tests
+
+run_statement_coverage:
+  stage: statement_coverage
+  script:
+  - coverage run test_openweather.py
+  - coverage report -m
+  - coverage html -d reports/statement_coverage
+  artifacts:
+      name: statement_coverage
+      paths:
+        - reports
+
+run_branch_coverage:
+  stage: branch_coverage
+  script:
+  - coverage run --branch test_openweather.py
+  - coverage report -m
+  - coverage html -d reports/branch_coverage
+  artifacts:
+      name: branch_coverage
+      paths:
+        - reports
+
+run_tests:
+  stage: run_tests
+  script:
+  # - . venv/bin/activate
+  - pytest -v --cov=openweather.py > reports/tests.txt
+  artifacts:
+      name: all_reports
+      paths:
+        - reports
+

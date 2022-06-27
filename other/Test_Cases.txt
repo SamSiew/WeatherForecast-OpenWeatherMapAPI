@@ -1,0 +1,26 @@
+python openweather.py -city Melbourne -api ad3d090e749a388432e6eb595ca1c3c5 -temp celsius -time
+
+
+python openweather.py -city Melbourne -api ad3d090e749a388432e6eb595ca1c3c5 -temp celsius -temp fahrenheit
+    valid output with fahrenheit
+
+
+python openweather.py -city Melbourne -temp celsius
+    invalid, api must be provided 
+
+
+python openweather.py -cid 7839805 -api ad3d090e749a388432e6eb595ca1c3c5 -temp celsius -time
+    valid city id  
+    
+python openweather.py -gc -37.813061 144.944214 -api ad3d090e749a388432e6eb595ca1c3c5 -temp celsius -time
+    valid city id  
+
+python openweather.py -z 94040 us -api ad3d090e749a388432e6eb595ca1c3c5 -temp celsius -time
+    valid zip code  
+
+python openweather.py -z 94040 us -gc -37.813061 144.944214 -api ad3d090e749a388432e6eb595ca1c3c5 -temp celsius -time
+    invalid: more than one location argument
+
+
+# coverage
+coverage run openweather.py -city Melbourne -api ad3d090e749a388432e6eb595ca1c3c5 -temp celsius -time
